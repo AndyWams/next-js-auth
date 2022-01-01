@@ -12,7 +12,7 @@ function register(req, res) {
 
   // validate
   if (usersRepo.find((x) => x.email === user.email))
-    throw `User with the email "${user.email}" already exists`;
+    throw `User with this email already exists`;
 
   // hash password
   user.hash = bcrypt.hashSync(password, 10);

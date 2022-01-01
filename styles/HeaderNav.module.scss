@@ -1,0 +1,25 @@
+@import "./Vars.module.scss";
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  background: $white;
+  align-items: center;
+  border-bottom: 1px solid rgba($grey, 0.37);
+  padding: 1em 4em;
+  .avatar {
+    display: flex;
+    font-size: 30px;
+    margin-right: 5px;
+  }
+}
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+}

@@ -15,3 +15,12 @@ a {
 * {
   box-sizing: border-box;
 }
+.grid {
+  display: grid;
+}
+.grid--1fr--2fr {
+  grid-template-columns: 1fr 2fr;
+}
+.cursor {
+  cursor: pointer;
+}

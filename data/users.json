@@ -6,5 +6,29 @@
         "id": 1,
         "dateCreated": "2022-01-01T09:20:36.377Z",
         "dateUpdated": "2022-01-01T09:20:36.378Z"
+    },
+    {
+        "email": "andrew.wams@yahoo.com",
+        "fullname": "Drewan",
+        "hash": "$2a$10$KyqZyLZeAPORP2TV5L4mCuq6KIL.5FRoyv/Vb2oJWE7g/4k6uK4TG",
+        "id": 2,
+        "dateCreated": "2022-01-01T17:33:25.152Z",
+        "dateUpdated": "2022-01-01T17:33:25.152Z"
+    },
+    {
+        "email": "teconplus@baudland.com",
+        "fullname": "Tecon Plus",
+        "hash": "$2a$10$DdG5n1kt56rB1TePp2LB7e5BUORxjcsD7cE0wiPp.KxJHu2xKirLy",
+        "id": 3,
+        "dateCreated": "2022-01-01T17:43:55.393Z",
+        "dateUpdated": "2022-01-01T17:43:55.393Z"
+    },
+    {
+        "email": "dinmavic01@gmail.com",
+        "fullname": "Deborah",
+        "hash": "$2a$10$ABoAmVn4wMr9wJ1nMCtUi.a.JK2E.39KB8RAH.eHLSTsH96UVcTW6",
+        "id": 4,
+        "dateCreated": "2022-01-01T17:52:21.879Z",
+        "dateUpdated": "2022-01-01T17:52:21.879Z"
     }
 ]

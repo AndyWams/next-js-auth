@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
 import Script from "next/script";
 import Head from "next/head";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -13,6 +15,16 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Layout>
+      {
+        <ToastContainer
+          position="top-right"
+          hideProgressBar={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+        />
+      }
       <Head>
         <title>Welcome</title>
       </Head>
@@ -26,7 +38,6 @@ function MyApp({ Component, pageProps }) {
         src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
         strategy="lazyOnload"
       />
-      <Script src="toastr.js" />
 
       <Component {...pageProps} />
     </Layout>

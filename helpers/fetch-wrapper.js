@@ -70,9 +70,10 @@ function handleResponse(response) {
         // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
         userService.logout();
       }
-      if ([404].includes(response.status) && userService.userValue) {
+      if ([400, 404].includes(response.status) && userService.userValue) {
         // auto logout if 404 Bad request response returned from api
-        return toastr.error("Bad request");
+        console.log("Auth Failure: Bad request");
+        return Promise.reject(error);
       }
 
       const error = (data && data.message) || response.statusText;

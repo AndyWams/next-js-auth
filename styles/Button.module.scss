@@ -9,6 +9,9 @@
   font-weight: bold;
   border: none;
   width: 100%;
+  &:disabled {
+    background: $grey;
+  }
 }
 .btnlogout {
   height: 50px;
