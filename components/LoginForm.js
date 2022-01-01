@@ -1,3 +1,4 @@
+import { useState } from "react";
 import inputstyles from "../styles/Input.module.scss";
 import buttonstyles from "../styles/Button.module.scss";
 import Link from "next/link";
@@ -6,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { userService, alertService } from "../services";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function LoginForm() {
   const router = useRouter();
 
@@ -18,7 +21,7 @@ function LoginForm() {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit, formState } = useForm(formOptions);
-  const { errors } = formState;
+  const [serverError, setServerError] = useState(false);
 
   function onSubmit({ email, password }) {
     return userService
@@ -28,48 +31,67 @@ function LoginForm() {
         const returnUrl = router.query.returnUrl || "/";
         router.push(returnUrl);
       })
-      .catch(alertService.error);
+      .catch((err) => {
+        setServerError(true);
+        toast.error(err, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        alertService.error;
+      });
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={inputstyles.input}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          placeholder="Enter your email address"
-          {...register("email")}
+    <>
+      {serverError && (
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
-      </div>
+      )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={inputstyles.input}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            placeholder="Enter your email address"
+            {...register("email")}
+          />
+        </div>
 
-      <div className={inputstyles.input}>
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          placeholder="Type to create a password"
-          {...register("password")}
-        />
-      </div>
-      <div className={inputstyles.inputcheck}>
-        <input type="checkbox" id="checkbox" />
-        <label htmlFor="checkbox">Remember me</label>
-      </div>
-      <div className="mt-4">
-        <button
-          type="submit"
-          className={buttonstyles.btnprimary}
-          disabled={formState.isSubmitting}
-        >
-          Login
-        </button>
-      </div>
-      <div className="d-flex justify-content-center my-4">
-        Don't have an account?{" "}
-        <Link href="/auth/register">
-          <a className="mx-1">Create account!</a>
-        </Link>
-      </div>
-    </form>
+        <div className={inputstyles.input}>
+          <label htmlFor="password">Password</label>
+          <input
+            type="text"
+            placeholder="Type to create a password"
+            {...register("password")}
+          />
+        </div>
+        <div className={inputstyles.inputcheck}>
+          <input type="checkbox" id="checkbox" />
+          <label htmlFor="checkbox">Remember me</label>
+        </div>
+        <div className="mt-4">
+          <button
+            type="submit"
+            className={buttonstyles.btnprimary}
+            disabled={formState.isSubmitting}
+          >
+            Login
+          </button>
+        </div>
+        <div className="d-flex justify-content-center my-4">
+          Don't have an account?{" "}
+          <Link href="/auth/register">
+            <a className="mx-1">Create account!</a>
+          </Link>
+        </div>
+      </form>
+    </>
   );
 }
 

@@ -53,19 +53,18 @@ function getById(id) {
   return fetchWrapper.get(`${baseUrl}/${id}`);
 }
 
-function update(id, params) {
-  return fetchWrapper.put(`${baseUrl}/${id}`, params).then((x) => {
-    // update stored user if the logged in user updated their own record
-    if (id === userSubject.value.id) {
-      // update local storage
-      const user = { ...userSubject.value, ...params };
-      localStorage.setItem("user", JSON.stringify(user));
+async function update(id, params) {
+  const x = await fetchWrapper.put(`${baseUrl}/${id}`, params);
+  // update stored user if the logged in user updated their own record
+  if (id === userSubject.value.id) {
+    // update local storage
+    const user = { ...userSubject.value, ...params };
+    localStorage.setItem("user", JSON.stringify(user));
 
-      // publish updated user to subscribers
-      userSubject.next(user);
-    }
-    return x;
-  });
+    // publish updated user to subscribers
+    userSubject.next(user);
+  }
+  return x;
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
